@@ -1,4 +1,5 @@
 <div class="input-group-sm" [formGroup]="form">
   <input type="text" class="form-control text-end " formControlName="taxAmount" id="taxAmount"
-    aria-describedby="taxAmount" placeholder="THB">
+    aria-describedby="taxAmount" placeholder="THB"
+    [ngClass]="{'is-invalid': form.get('taxAmount')?.invalid && (form.get('taxAmount')?.dirty || form.get('taxAmount')?.touched)}">
 </div>

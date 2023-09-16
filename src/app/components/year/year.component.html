@@ -1,5 +1,6 @@
 <div [formGroup]="form">
-  <select class="form-select form-select-sm" aria-label="Small select example" formControlName="year">
+  <select class="form-select form-select-sm" aria-label="Small select example" formControlName="year"
+    [ngClass]="{'is-invalid': form.get('month')?.invalid && (form.get('month')?.dirty || form.get('month')?.touched)}">
     <option *ngFor="let year of years" [value]="year">
       {{year}}
     </option>

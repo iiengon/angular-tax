@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { TaxData } from '../models/tax-data';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TaxData, MapTaxDatas } from '../models/tax-data';
+import { MatHorizontalStepper } from '@angular/material/stepper/stepper';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -8,10 +9,14 @@ import { TaxData } from '../models/tax-data';
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+
+  }
+  @ViewChild('stepper') stepper!: MatHorizontalStepper;
   public myForm!: FormGroup;
   public isShowAdditional: boolean = false;
   public isLinear = true;
+  public formData: TaxData = {};
   filingTypes = [
     {
       'name': 'Ordinary Filing',
@@ -27,21 +32,21 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.myForm = this.fb.group({
       filingType: ['0'],
-      month: [''],
-      year: [''],
-      saleAmount: [''],
-      taxAmount: [''],
+      month: ['', Validators.required],
+      year: ['', Validators.required],
+      saleAmount: ['', Validators.required],
+      taxAmount: ['', Validators.required],
       surcharge: [''],
       penalty: [''],
       totalAmount: ['']
 
     })
   }
-  submitForm() {
+  confirmForm() {
 
-    //getRawValue not send value disable
-    const formData = new TaxData(this.myForm.getRawValue());
-    console.log('formData', formData);
+
+
+    alert(JSON.stringify(this.formData));
 
 
   }
@@ -89,5 +94,16 @@ export class UsersComponent implements OnInit {
     this.myForm.get('totalAmount')?.setValue(`${sumTotalAmount} THB`);
 
 
+  }
+  onNextStep() {
+    if (!this.myForm.valid) {
+      // this should make all invalid fields light up in red
+      this.myForm.markAllAsTouched();
+      return;
+    }
+    //getRawValue not send value disable
+    this.formData = new MapTaxDatas(this.myForm.getRawValue());
+    console.log('formData', this.formData);
+    this.stepper.next();
   }
 }
