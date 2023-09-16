@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { TaxData } from '../models/tax-data';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MapTaxDatas, TaxData } from '../models/tax-data';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -12,6 +12,8 @@ export class UsersComponent implements OnInit {
   public myForm!: FormGroup;
   public isShowAdditional: boolean = false;
   public isLinear = true;
+  public formData: TaxData = {};
+
   filingTypes = [
     {
       'name': 'Ordinary Filing',
@@ -27,21 +29,23 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.myForm = this.fb.group({
       filingType: ['0'],
-      month: [''],
+      month: ['', [Validators.required]],
       year: [''],
-      saleAmount: [''],
-      taxAmount: [''],
+      saleAmount: ['', [Validators.required]],
+      taxAmount: ['', [Validators.required]],
       surcharge: [''],
       penalty: [''],
       totalAmount: ['']
 
     })
   }
-  submitForm() {
+  confirmForm() {
 
     //getRawValue not send value disable
-    const formData = new TaxData(this.myForm.getRawValue());
-    console.log('formData', formData);
+    this.formData = new MapTaxDatas(this.myForm.getRawValue());
+    console.log('formData', this.formData);
+
+    alert(JSON.stringify(this.formData));
 
 
   }
@@ -90,4 +94,9 @@ export class UsersComponent implements OnInit {
 
 
   }
+  onNextStep() {
+    this.myForm.get('saleAmount')?.markAsTouched();
+    this.myForm.get('taxAmount')?.markAsTouched();
+  }
+
 }

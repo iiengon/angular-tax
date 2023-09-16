@@ -1,4 +1,5 @@
 <div class="input-group-sm" [formGroup]="form">
   <input type="text" class="form-control text-end" formControlName="saleAmount" id="saleAmount"
-    aria-describedby="saleAmount" placeholder="THB" (blur)="onFormatNumberDecimal()">
+    [ngClass]="{'is-invalid': form.get('saleAmount')?.invalid && (form.get('saleAmount')?.dirty || form.get('saleAmount')?.touched)}"
+    aria-describedby="saleAmount" placeholder="THB" (blur)="onFormatNumberDecimal()" autocomplete="off">
 </div>
