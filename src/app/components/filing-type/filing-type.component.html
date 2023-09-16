@@ -1,0 +1,22 @@
+<!-- <div [formGroup]="form">
+  <ng-container *ngFor="let emp of filingTypes; let i = index">
+    <label class="check-filtertype">
+      <input type="radio" formControlName="filingType" name="filingType" [value]="emp.value">
+      <span style="margin: 10px;">{{emp.name}} <mat-icon>help</mat-icon></span>
+    </label>
+  </ng-container>
+
+</div> -->
+
+<div class="row ps-3" [formGroup]="form">
+  <ng-container *ngFor="let emp of filingTypes; let i = index">
+    <div class="form-check col-md-3 col-6">
+      <input class="form-check-input" formControlName="filingType" type="radio" name="filingType" [value]="emp.value"
+        (change)="onSelectValue(emp.value)">
+      <label class="form-check-label" for="filingType">
+        {{emp.name}}
+      </label>
+      <mat-icon>help</mat-icon>
+    </div>
+  </ng-container>
+</div>

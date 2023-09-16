@@ -1,0 +1,10 @@
+mat-icon {
+  font-size: 18px;
+}
+.form-control{
+  font-size: small;
+}
+::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header-container {
+  width: fit-content;
+  margin: 0 auto;
+}

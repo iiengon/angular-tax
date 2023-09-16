@@ -1,0 +1,7 @@
+<div [formGroup]="form">
+  <select class="form-select form-select-sm" aria-label="Small select example" formControlName="month">
+    <option *ngFor="let month of months" [value]="month.value" [disabled]="month.value > currentMonth ">
+      {{month.label}}
+    </option>
+  </select>
+</div>

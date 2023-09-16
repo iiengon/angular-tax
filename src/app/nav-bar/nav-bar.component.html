@@ -1,0 +1,134 @@
+<div class="container">
+  <mat-stepper labelPosition="bottom" [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="myForm" completed="false">
+      <form [formGroup]="myForm">
+        <ng-template matStepLabel>Input Detail</ng-template>
+        <div class="card">
+          <div class="card-body">
+            <div class="type-of-filing">
+              <h3>1. Tax Filing Detail</h3>
+              <hr />
+              <label for="label-type-of-filing">Type of filling
+                <span class="text-danger"> *
+                </span> </label>
+              <div class="row form-group">
+                <ng-container *ngFor="let emp of filterTypes; let i = index">
+                  <div class="col-md-3 col-12">
+                    <label class="check-filtertype">
+                      <input type="radio" formControlName="filterType" [value]="emp.value"
+                        (change)="selectOptions(emp.value)">
+                      <span style="margin: 10px;">{{emp.name}} <mat-icon>help</mat-icon></span>
+                    </label>
+                  </div>
+                  <!-- <app-filling-type [masterName]="emp.name" [value]="emp.value"
+                              (selectEvent)="crossOffItem($event)"></app-filling-type> -->
+                </ng-container>
+              </div>
+            </div>
+            <!-- start Tax Computation -->
+            <div class="tax-computation pt-4">
+              <h3>2. Tax Computation</h3>
+              <hr />
+              <p class="fw-bold">Provide total value taxable electronic service <span class="text-danger"> *
+                </span></p>
+              <div class="row total-value pb-3">
+                <div class="col-12 col-md-8 ">
+                  <p>1. Total value of taxable electronic service exclusive of VAT</p>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="form-group">
+                    <input type="text" autocomplete="off" class="form-control text-end"
+                      (change)="onFormatNumberDecimal()" formControlName="totalValue" id="total-value"
+                      aria-describedby="total-value" placeholder="THB">
+                  </div>
+                </div>
+              </div>
+              <div class="row total-vat">
+                <div class="col-12 col-md-8">
+                  <p>2. Total VAT to be remitted (7% of 1.)</p>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="form-group">
+                    <input type="text" class="form-control text-end" formControlName="totalVat" id="total-vat"
+                      aria-describedby="total-vat" placeholder="THB">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end Tax Computation -->
+
+            <!-- start additional -->
+            <div class="additional-content" *ngIf="isShowAdditional">
+              <p class="fw-bold">In case of late filing and payment , or additional filing</p>
+              <div class="row additional-surcharge pt-2">
+                <div class="col-6 col-md-8">
+                  <p>Surcharge<span><mat-icon>help</mat-icon></span></p>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="form-group">
+                    <input type="text" class="form-control text-end" formControlName="surcharge" id="total-vat"
+                      aria-describedby="total-vat" placeholder="THB">
+                  </div>
+                </div>
+              </div>
+              <div class="row additional-penalty pt-2">
+                <div class="col-6 col-md-8">
+                  <p>Penalty<span><mat-icon>help</mat-icon></span></p>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="form-group">
+                    <input type="text" class="form-control text-end" formControlName="penalty" id="total-vat"
+                      aria-describedby="total-vat" placeholder="THB">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button mat-button matStepperNext (click)="onSubmit()">Next</button>
+      </form>
+    </mat-step>
+    <mat-step completed="false">
+      <ng-template matStepLabel>Review & Confirm</ng-template>
+      <div class="card">
+        <div class="row card-body">
+          <div class="submit-type-filing-detail">
+            <h3 class="fw-bold">Tax Filing Detail</h3>
+            <hr />
+            <div class="container text-center">
+              <div class="row row-cols-auto">
+                <div class="col fw-bold">Type of filing</div>
+                <div class="col ps-0">Orinary Filing</div>
+              </div>
+              <div class="row row-cols-auto">
+                <div class="col fw-bold">VAT Month</div>
+                <div class="col">September 2021</div>
+              </div>
+            </div>
+
+          </div>
+          <div class="submit-tax-computation pt-3">
+            <h3 class="fw-bold">Tax Computation</h3>
+            <hr />
+
+            <div class="row">
+              <div class="col-md-8">Total value of taxable electronic service exclusive of VAT</div>
+              <div class="col-md-4">Orinary Filing</div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">VAT Month</div>
+              <div class="col-md-4">September 2021</div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
