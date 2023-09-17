@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TaxData, MapTaxDatas } from '../models/tax-data';
-import { MatHorizontalStepper } from '@angular/material/stepper/stepper';
+import { MatStepper } from '@angular/material/stepper/stepper';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
   constructor(private fb: FormBuilder) {
 
   }
-  @ViewChild('stepper') stepper!: MatHorizontalStepper;
+  @ViewChild('stepper') stepper!: MatStepper;
   public myForm!: FormGroup;
   public isShowAdditional: boolean = false;
   public isLinear = true;
@@ -96,7 +96,8 @@ export class UsersComponent implements OnInit {
 
   }
   onNextStep() {
-    if (!this.myForm.valid) {
+
+    if (this.myForm.invalid) {
       // this should make all invalid fields light up in red
       this.myForm.markAllAsTouched();
       return;

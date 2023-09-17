@@ -15,7 +15,7 @@
 
           </div>
           <!-- start month -->
-          <div class="vat-month">
+          <div class="vat-mont pt-2">
             <label class="pb-3" for="label-type-of-filing">Tax Month
               <span class="text-danger"> *
               </span> </label>
@@ -60,29 +60,29 @@
             <div class="surcharge-penalty" *ngIf="isShowAdditional">
               <p class="fw-bold">In case of late filing and payment , or additional filing</p>
               <div class="row surcharge pt-2">
-                <div class="col-6 col-md-8">
+                <div class="col-12 col-md-8">
                   <p>3. Surcharge<span><mat-icon>help</mat-icon></span></p>
                 </div>
-                <div class="col-6 col-md-4">
+                <div class="col-12 col-md-4">
                   <app-surcharge [form]="myForm"></app-surcharge>
                 </div>
               </div>
 
               <div class="row penalty pt-2">
-                <div class="col-6 col-md-8">
+                <div class="col-12 col-md-8">
                   <p>4. Penalty<span><mat-icon>help</mat-icon></span></p>
                 </div>
-                <div class="col-6 col-md-4">
+                <div class="col-12 col-md-4">
                   <app-penalty [form]="myForm"></app-penalty>
                 </div>
               </div>
 
               <div class="row total-amount pt-2">
-                <div class="col-6 col-md-8">
+                <div class="col-12 col-md-8">
                   <p>5. Total amount of VAT,surcharge,and penalty to be remitted
                     (2.+3.+4.)<span><mat-icon>help</mat-icon></span></p>
                 </div>
-                <div class="col-6 col-md-4">
+                <div class="col-12 col-md-4">
                   <app-total-amount [form]="myForm"></app-total-amount>
                 </div>
               </div>

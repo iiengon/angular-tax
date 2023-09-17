@@ -10,7 +10,7 @@
 
 <div class="row ps-3" [formGroup]="form">
   <ng-container *ngFor="let emp of filingTypes; let i = index">
-    <div class="form-check col-md-3 col-6">
+    <div class="form-check col-md-3 col-12">
       <input class="form-check-input" formControlName="filingType" type="radio" name="filingType" [value]="emp.value"
         (change)="onSelectValue(emp.value)" autocomplete="off">
       <label class="form-check-label" for="filingType">

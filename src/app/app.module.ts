@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +26,6 @@ import { TotalAmountComponent } from './components/total-amount/total-amount.com
   declarations: [
     AppComponent,
     UsersComponent,
-    NavBarComponent,
     FilingTypeComponent,
     SaleAmountComponent,
     MonthComponent,
